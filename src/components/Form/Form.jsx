@@ -1,25 +1,24 @@
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../.././redux/personDataSlice';
+import { addContact } from '../../redux/mainReduser';
 import { Title, Button, Input } from './Form.styled.js';
 
 export default function Form() {
   const dispatch = useDispatch();
   const contacts = useSelector(({ contacts }) => contacts);
 
- 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
     const nameForm = e.target.elements.name.value;
     const numberForm = e.target.elements.number.value;
-     if (
-       contacts.find(cont => cont.name.toLowerCase() === nameForm.toLowerCase())
-     ) {
-       return alert(`${nameForm} is already in contacts`);
-     }
-    dispatch(addContact({id: nanoid() , name:nameForm, number:numberForm }));
-   form.reset();
+    if (
+      contacts.find(cont => cont.name.toLowerCase() === nameForm.toLowerCase())
+    ) {
+      return alert(`${nameForm} is already in contacts`);
+    }
+    dispatch(addContact({ id: nanoid(), name: nameForm, number: numberForm }));
+    form.reset();
   };
 
   return (
@@ -41,9 +40,8 @@ export default function Form() {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        <Button type="submit" >Add contact</Button>
+        <Button type="submit">Add contact</Button>
       </form>
     </>
   );
 }
-
