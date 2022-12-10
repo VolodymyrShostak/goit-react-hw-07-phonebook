@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './operation';
+import { fetchContacts, addContact, deleteContact, setFilter } from './operation';
 
 const initialState = {
   contacts: {
@@ -46,5 +46,8 @@ export default createReducer(initialState, {
   [deleteContact.rejected]: (state, action) => {
     state.contacts.error = action.payload;
     state.contacts.isLoading = false;
+  },
+  [setFilter]: (state, action) => {
+    state.filter = action.payload;
   },
 });
