@@ -10,7 +10,7 @@ const initialState = {
   filter: '',
 };
 
-export default createReducer(initialState, {
+export const phonebook= createReducer (initialState, {
 
   [fetchContacts.pending]: state => {
     state.contacts.isLoading = true;
