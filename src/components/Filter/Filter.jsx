@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Title, Input } from './Filter.styled.js';
-import { createFilter } from 'redux/filterSlise.js';
+import { setFilter } from 'redux/operation';
 
 const Filter = () => {
-  const value = useSelector(({filter}) => filter)
+  const filter = useSelector(({ phonebook: { filter } }) => filter);
   const dispatch = useDispatch();
 
     return (
@@ -13,9 +13,9 @@ const Filter = () => {
         <Input
           type="text"
           name="filter"
-          value={value}
+          value={filter}
           onChange={({ target: { value } }) => {
-            dispatch(createFilter(value));
+            dispatch(setFilter(value));
           }}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"

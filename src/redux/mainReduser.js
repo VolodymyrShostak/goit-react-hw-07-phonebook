@@ -14,6 +14,7 @@ export const phonebook= createReducer (initialState, {
 
   [fetchContacts.pending]: state => {
     state.contacts.isLoading = true;
+     state.contacts.error = "";
   },
   [fetchContacts.fulfilled]: (state, action) => {
     state.contacts.isLoading = false;
@@ -25,6 +26,7 @@ export const phonebook= createReducer (initialState, {
   },
   [addContact.pending]: state => {
     state.contacts.isLoading = true;
+    state.contacts.error = '';
   },
   [addContact.fulfilled]: (state, action) => {
     state.contacts.items = [...state.contacts.items, action.payload];
@@ -36,6 +38,7 @@ export const phonebook= createReducer (initialState, {
   },
   [deleteContact.pending]: state => {
     state.contacts.isLoading = true;
+    state.contacts.error = '';
   },
   [deleteContact.fulfilled]: (state, action) => {
     state.contacts.items = state.contacts.items.filter(

@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Button, Contact, ContactList } from './ContactList.styled.js';
-import { deleteContact } from '../../redux/mainReduser';
+import { deleteContact } from '../../redux/operation';
 
 const ContactsList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(({ contacts }) => contacts);
-  const filter = useSelector(({ filter }) => filter);
+ 
+  const contacts = useSelector(({ phonebook: { contacts } }) => contacts.items);
+  const filter = useSelector(({ phonebook: { filter } }) => filter);
 
   const normalizedFilter = filter.toLowerCase();
-
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
+
   return (
     <ContactList>
       {visibleContacts.map(({ id, name, number }) => (

@@ -1,11 +1,13 @@
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/mainReduser';
+import { addContact } from '../../redux/operation';
 import { Title, Button, Input } from './Form.styled.js';
 
 export default function Form() {
   const dispatch = useDispatch();
-  const contacts = useSelector(({ contacts }) => contacts);
+    const contacts = useSelector(
+      ({ phonebook: { contacts } }) => contacts.items
+    );
 
   const handleSubmit = e => {
     e.preventDefault();
